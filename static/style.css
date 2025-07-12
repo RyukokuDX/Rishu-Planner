@@ -147,3 +147,37 @@ button#reset-button {
     margin-bottom: 15px;
     color: #007bff;
 }
+
+/* 新しい重複チェックボタンのスタイル */
+button#check-conflicts-button {
+    background-color: #ffc107; /* 警告を示す黄色 */
+    color: #212529;
+}
+
+/* 重複したセルをハイライトするスタイル */
+#timetable td.conflict-cell {
+    background-color: #f8d7da !important; /* 警告を示す赤色 */
+    border: 2px solid #dc3545;
+}
+
+/* 複数の科目を表示するためにセル内のスタイルを調整 */
+.course-cell {
+    background-color: #d1ecf1;
+    font-weight: bold;
+    font-size: 12px; /* 少しフォントを小さくする */
+    line-height: 1.4;
+    overflow-y: auto; /* 科目が多くなったらスクロール */
+    color: #0c5460;
+    text-align: left; /* 左揃えにする */
+    padding: 5px;
+    vertical-align: top; /* 上揃えにする */
+}
+#selected-list li button {
+    font-size: 12px;
+    padding: 3px 8px;
+    width: auto;
+    background-color: #6c757d;
+    color: white;
+    /* ボタンのマージンをリセット */
+    margin-bottom: 0; 
+}
