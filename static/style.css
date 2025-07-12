@@ -6,7 +6,7 @@ body {
     padding: 20px;
 }
 .container {
-    max-width: 1200px;
+    max-width: 1300px;
     margin: 0 auto;
     background: #fff;
     padding: 20px;
@@ -18,31 +18,39 @@ header h1 {
     color: #4a4a4a;
 }
 main {
-    display: flex;
-    gap: 30px;
+    display: grid;
+    grid-template-columns: 280px 1fr 320px; /* 3カラムレイアウト */
+    gap: 20px;
 }
-.controls {
-    width: 300px;
+
+.left-panel, .right-panel {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
 }
-.timetable-container {
-    flex-grow: 1;
+.left-panel h2, .right-panel h2 {
+    margin-top: 0;
 }
-select, button {
-    width: 100%;
-    padding: 10px;
+
+.timetable-container p {
+    text-align: center;
+    color: #666;
     margin-bottom: 10px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    font-size: 16px;
 }
+
 button {
     cursor: pointer;
-    background-color: #007bff;
-    color: white;
+    padding: 10px;
+    border-radius: 4px;
     border: none;
+    font-size: 16px;
+    width: 100%;
+    margin-bottom: 10px;
 }
 button#reset-button {
     background-color: #dc3545;
+    color: white;
 }
 #timetable {
     width: 100%;
@@ -53,29 +61,89 @@ button#reset-button {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: center;
-    height: 60px;
+    height: 70px;
     font-size: 14px;
+    vertical-align: middle;
 }
 #timetable th {
     background-color: #e9ecef;
 }
+#timetable td {
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#timetable td:hover {
+    background-color: #e2e6ea;
+}
+/* クリックされたセルをハイライト */
+#timetable td.selected-cell {
+    background-color: #b8daff;
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+}
 .course-cell {
     background-color: #d1ecf1;
     font-weight: bold;
-    font-size: 12px;
-    line-height: 1.3;
+    font-size: 13px;
+    line-height: 1.4;
     overflow: hidden;
+    color: #0c5460;
 }
+
+/* 選択済みリスト */
 #selected-list {
     list-style: none;
     padding: 0;
+    margin-top: 10px;
 }
 #selected-list li {
     background: #f0f0f0;
-    padding: 8px;
+    padding: 10px;
     margin-bottom: 5px;
     border-radius: 4px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    font-size: 14px;
+}
+#selected-list li button {
+    font-size: 12px;
+    padding: 3px 8px;
+    width: auto;
+    background-color: #6c757d;
+    color: white;
+}
+
+/* 右パネルの選択可能科目リスト */
+#available-courses-list .course-item {
+    padding: 10px;
+    margin-bottom: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#available-courses-list .course-item button {
+    padding: 5px 10px;
+    font-size: 14px;
+    width: auto;
+    background-color: #28a745;
+    color: white;
+}
+#available-courses-list .course-item button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+#available-courses-list .placeholder {
+    color: #888;
+    text-align: center;
+    margin-top: 20px;
+}
+#available-courses-list h3 {
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 15px;
+    color: #007bff;
 }

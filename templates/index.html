@@ -13,25 +13,25 @@
         </header>
 
         <main>
-            <div class="controls">
-                <h2>科目選択</h2>
-                <select id="course-select">
-                    <option value="">--- 科目を選択 ---</option>
-                </select>
-                <button id="add-button">追加</button>
-                <button id="reset-button">リセット</button>
-
-                <hr>
-
+            <div class="left-panel">
                 <h2>選択済み科目 (<span id="total-credits">0</span>単位)</h2>
+                <button id="reset-button">リセット</button>
                 <ul id="selected-list">
                     </ul>
             </div>
 
             <div class="timetable-container">
                 <h2>時間割</h2>
+                <p>コマをクリックして授業を選択してください。</p>
                 <table id="timetable">
                     </table>
+            </div>
+
+            <div class="right-panel">
+                <h2>選択可能科目</h2>
+                <div id="available-courses-list">
+                    <p class="placeholder">時間割のコマを選択してください。</p>
+                </div>
             </div>
         </main>
     </div>
