@@ -230,3 +230,21 @@ button#check-conflicts-button {
     background-color: #f8d7da !important;
     border: 1px solid #dc3545;
 }
+.filter-controls {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #e9ecef;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.filter-controls label {
+    font-weight: bold;
+}
+.filter-controls select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}

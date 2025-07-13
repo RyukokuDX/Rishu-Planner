@@ -10,8 +10,15 @@
     <div class="container">
         <header>
             <h1>履修登録シミュレーション 🗓️</h1>
-        </header>
-
+        </header>    
+        <div class="filter-controls">
+            <label for="term-filter">学期で絞り込み:</label>
+            <select id="term-filter">
+                <option value="all">すべて</option>
+                <option value="前期">前期 (1Q, 2Q含む)</option>
+                <option value="後期">後期 (3Q, 4Q含む)</option>
+            </select>
+        </div>
         <main>
             <div class="left-panel">
                 <h2>選択済み科目 (<span id="total-credits">0</span>単位)</h2>

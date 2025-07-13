@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // HTML要素
+    const termFilter = document.getElementById('term-filter'); 
     const timetable = document.getElementById('timetable');
     const selectedList = document.getElementById('selected-list');
     const totalCreditsSpan = document.getElementById('total-credits');
@@ -50,6 +51,14 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         resetButton.addEventListener('click', handleReset);
         checkConflictsButton.addEventListener('click', handleConflictCheck);
+        // ▼▼▼ フィルターの変更イベントリスナーを追加 ▼▼▼
+        termFilter.addEventListener('change', () => {
+            // スロットが選択中であれば、科目リストを再描画する
+            if (currentSelectedSlot) {
+                displayAvailableCourses(currentSelectedSlot.dataset);
+            }
+        });
+        // ▲▲▲ フィルターの変更イベントリスナーを追加 ▲▲▲
     }
 
     // スロット（各クオーター）がクリックされた時の処理
@@ -65,11 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
     // 選択可能な科目を右パネルに表示
     function displayAvailableCourses({ dayIndex, period, quarter }) {
         const day = dayMapReverse[dayIndex];
-        const quarterTerms = (quarter === 'q1') ? ['前期', '後期', '通年', '1Q', '3Q'] : ['前期', '後期', '通年', '2Q', '4Q'];
+        // ▼▼▼ フィルターロジックをここから変更 ▼▼▼
 
-        const available = courses.filter(c => 
-            c.day === day && c.period === period && quarterTerms.includes(c.term)
-        );
+        // 1. まずコマの位置で絞り込み
+        let available = courses.filter(c => c.day === day && c.period === period);
+
+        // 2. 次に学期フィルターで絞り込み
+        const selectedTerm = termFilter.value;
+        if (selectedTerm !== 'all') {
+            const validTerms = (selectedTerm === '前期')
+                ? ['前期', '1Q', '2Q', '通年']
+                : ['後期', '3Q', '4Q', '通年'];
+            available = available.filter(c => validTerms.includes(c.term));
+        }
+
+        // 3. 最後にクリックされたクオーターで絞り込み
+        const quarterTerms = (quarter === 'q1') 
+            ? ['前期', '後期', '通年', '1Q', '3Q'] 
+            : ['前期', '後期', '通年', '2Q', '4Q'];
+        available = available.filter(c => quarterTerms.includes(c.term));
+        
+        // ▲▲▲ フィルターロジックの変更はここまで ▲▲▲
         
         availableCoursesList.innerHTML = '';
         if (available.length === 0) {
