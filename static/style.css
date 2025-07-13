@@ -147,7 +147,6 @@ button#reset-button {
     margin-bottom: 15px;
     color: #007bff;
 }
-
 /* 新しい重複チェックボタンのスタイル */
 button#check-conflicts-button {
     background-color: #ffc107; /* 警告を示す黄色 */
@@ -180,4 +179,54 @@ button#check-conflicts-button {
     color: white;
     /* ボタンのマージンをリセット */
     margin-bottom: 0; 
+}
+/* 時間割のセルをフレックスボックスにして左右分割 */
+#timetable td {
+    padding: 0; /* 内側のpaddingをなくす */
+    cursor: default; /* セル自体のカーソルはデフォルトに */
+}
+
+/* 左右のクオータースロットのスタイル */
+.quarter-container {
+    display: flex;
+    height: 100%;
+}
+.quarter-slot {
+    flex: 1; /* 幅を均等に分ける */
+    padding: 5px;
+    border-left: 1px dotted #b0b0b0;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 11px;
+    line-height: 1.3;
+    overflow-y: auto;
+    text-align: left;
+    vertical-align: top;
+}
+.quarter-slot:first-child {
+    border-left: none;
+}
+.quarter-slot:hover {
+    background-color: #e9f5ff;
+}
+
+/* 選択中のスロットをハイライト */
+.quarter-slot.selected-slot {
+    background-color: #b8daff;
+    outline: 2px solid #007bff;
+    outline-offset: -2px;
+    z-index: 10;
+}
+
+/* 授業が登録されたスロット */
+.quarter-slot.course-cell {
+    background-color: #d1ecf1;
+    font-weight: bold;
+    color: #0c5460;
+}
+
+/* 重複したスロットをハイライト */
+.quarter-slot.conflict-cell {
+    background-color: #f8d7da !important;
+    border: 1px solid #dc3545;
 }
